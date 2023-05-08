@@ -1,17 +1,21 @@
 package com.example.tppoo;
 
 public class Calendrier {
-    private Creneaux[] creneaux;
-    private Journee [] journee;
-    private Tache[] taches;
 
+
+ // private Creneaux[] creneaux;
+    private Journee [] journees;
+  //  private Tache[] taches;
+
+
+ public Journee[] getJournees() {
+  return journees;
+ }
     public void IntroduireTache(Tache tache){
 
     }
-    public Planning planificationAuto(){
 
-        return null;
-    }
+
     public void afficherCal(){
 
     }

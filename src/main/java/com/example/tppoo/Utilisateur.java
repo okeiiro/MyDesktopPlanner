@@ -6,7 +6,7 @@ public class Utilisateur {
     public String pseudo;
     private Calendrier Cal;
     private Projet[] projets;
-    private Historique historique;//pas sure
+    private Planning[] historique;//pas sure
     private Badges badge;
     private Creneaux[] creneauxlibres;
     private Tache[] tachenonplan;
@@ -40,10 +40,46 @@ public class Utilisateur {
 
     }
 
-    public Planning planificationmanuelle(){
+
+    public void plannifier(){
+
+
+
+    }
+
+
+
+/*
+    public Planning creerPlanning(boolean man) {
+        Planning plan= new Planning();
+
+
+        if(){
+            return(planificationManuelle(plan));
+        }
+        else{
+            return(planificationAuto(plan));
+        }
 
         return null;
-    }
+         }
+*/
+
+
+        public Planning planificationManuelle (Planning planning){
+
+            return null;
+        }
+
+        public Planning planificationAuto (Planning planning){
+
+
+            return null;
+        }
+
+
+
+
 }
 
 
