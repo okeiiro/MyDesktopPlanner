@@ -16,10 +16,31 @@ public class TacheSimple extends Tache {
 
     }
 
-    public void TachePeriodique(Utilisateur user){
-        LocalDate date;
-        date = LocalDate.parse(dateDebut).plusDays(periodicite);
+    public void TachePeriodique(Utilisateur user, Planning planning){
+        LocalDate date = LocalDate.parse(dateDebut).plusDays(periodicite);
+        while(date.compareTo(planning.datefin)  <0)
+        {
+            date = LocalDate.parse(dateDebut).plusDays(periodicite);
+            Creneau creneauTrouve = null;
+            //String jourRecherche = date;
 
+            // Recherche du créneau avec l'attribut jour égal à date
+            for (Creneau creneau : planning.creneauxlibres) {
+                if (creneau.jour.equals(date)) {
+                    creneauTrouve = creneau;//si ce jour existe déjà dans le planning on
+
+
+                    break;
+                }
+            }
+
+           /* if (creneauTrouve != null) {
+                System.out.println("Le créneau trouvé est : " + creneauTrouve.jour);
+            } else {
+                System.out.println("Aucun créneau trouvé avec le jour " + date);
+            }*/
+
+        }
     }
 
 

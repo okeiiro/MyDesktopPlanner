@@ -8,7 +8,7 @@ public class Utilisateur {
     public String pseudo;
     private Calendrier Cal;
     private Projet[] projets;
-    private Planning[] historique;//pas sure
+    private Planning[] historique;
     private Badges badge;
     private Tache[] tachenonplan;
 
@@ -34,7 +34,7 @@ public class Utilisateur {
                 ((TacheDecomposee) tache).decomposition(tache, Cr, plan);
             }
         }
-        else {
+        else { //tache simple
 
             Tache tache = new TacheSimple(a, b, c, d, e, f); //choisir entre tache simple ou decomposée
             Duration duree = Duration.ofMinutes(b);
@@ -85,14 +85,12 @@ public class Utilisateur {
 
 
     public Planning setCrLibres(Planning planning){
-        LocalDate date;
-        int day=0,month=0,year=0;//select day//create creneaux for it
-        date=LocalDate.of(year,month,day);
+        LocalDate date =planning.datedebut;
+        int p=(int) planning.period;
+        Creneau[] creneauxlibres= new Creneau[p];
 
-        Creneau[] creneauxlibres= new Creneau[5];
-
-        for (int i = 0; i < 5; i++) {
-            planning.creneauxlibres[i] = new Creneau();
+        for (int i = 0; i < p; i++) {
+            creneauxlibres[i] = new Creneau();//lecture des horraires par l'utilisateur
             date = date.plusDays(1);
         }
         planning.creneauxlibres=creneauxlibres;

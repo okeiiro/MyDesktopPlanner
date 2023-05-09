@@ -6,7 +6,7 @@ import java.time.Duration;
 
 public class Creneau implements Decomposable{
 
- private LocalDate jour;
+ protected LocalDate jour;
  protected LocalTime HeureDebut;
  protected LocalTime HeureFin;
  private static int dureeMin;
@@ -40,7 +40,12 @@ public class Creneau implements Decomposable{
         Duration.ofMinutes(tache.duree);
 
 
+
     }
+
+   public void libererCreneau(){
+
+   }
 
 
 }
