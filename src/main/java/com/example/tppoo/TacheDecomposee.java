@@ -3,6 +3,8 @@ package com.example.tppoo;
 public class TacheDecomposee extends Tache implements Decomposable{
 
 
+    public TacheDecomposee(String a, int b, String c, String d, String e, String f) {
+    }
 
     public boolean valider() {
 
@@ -20,6 +22,7 @@ public class TacheDecomposee extends Tache implements Decomposable{
     }
 
     @Override
-    public void decomposition() {
+    public void decomposition(Tache tache) {
+
     }
 }

@@ -1,26 +1,46 @@
 package com.example.tppoo;
 
 public class Application {
-    private Utilisateur[] utilisateurs;
+    protected Utilisateur[] utilisateurs;
 
 
     public void ajouterUtilisateur(int i,String nom){
        // utilisateurs[i+1]= new Utilisateur;
         utilisateurs[i+1].pseudo=nom;
     }
+    public Utilisateur[] start() {
 
-    public Utilisateur authentification(String nom) {
+        Utilisateur[] utilisateurs = new Utilisateur[10];
+        return utilisateurs;
+    }
+
+
+
+
+    public Utilisateur authentification(String nom,Utilisateur[]users) {
+    System.out.println("ok");
+    Utilisateur user= new Utilisateur();
+    boolean find=false;
+
+
     int i=0;
-        while( i<utilisateurs.length){
-            if (utilisateurs[i].pseudo == nom) {
-                return (utilisateurs[i]);
-            }
-            else{
-                ajouterUtilisateur(i, nom);
-                return (utilisateurs[i+1]);
-            }
-        }
+        while( users[i]!=null){
+            if (users[i].pseudo.equals(nom)) {
+                user=users[i];
+                find=true;
+                System.out.println("found you!!");
 
-        return null;
+            }
+            i++;
+
+        }
+        if(find==false){
+            user.pseudo=nom;
+            users[i]=user;
+        }
+        System.out.println(user.pseudo);
+        this.utilisateurs=users;
+
+        return user;
     }
 }
