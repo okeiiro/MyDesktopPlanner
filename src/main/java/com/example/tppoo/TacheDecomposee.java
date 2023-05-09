@@ -22,7 +22,9 @@ public class TacheDecomposee extends Tache implements Decomposable{
     }
 
     @Override
-    public void decomposition(Tache tache) {
+    public void decomposition(Tache tache, Creneau Cr, Planning planning) {
+
+
 
     }
 }

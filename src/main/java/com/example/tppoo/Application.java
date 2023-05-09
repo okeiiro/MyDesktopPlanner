@@ -18,14 +18,14 @@ public class Application {
 
 
     public Utilisateur authentification(String nom,Utilisateur[]users) {
-    System.out.println("ok");
+
     Utilisateur user= new Utilisateur();
     boolean find=false;
 
 
     int i=0;
         while( users[i]!=null){
-            if (users[i].pseudo.equals(nom)) {
+            if (users[i].pseudo.toUpperCase().equals(nom.toUpperCase())) {
                 user=users[i];
                 find=true;
                 System.out.println("found you!!");

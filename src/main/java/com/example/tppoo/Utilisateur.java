@@ -4,8 +4,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-import static com.example.tppoo.Priorite.low;
-
 public class Utilisateur {
     public String pseudo;
     private Calendrier Cal;
@@ -22,17 +20,36 @@ public class Utilisateur {
     public void setpreference(){}
 
 
-    public Creneaux ajoutertache(String a,int b,String c, String d, String e, String f, Creneaux Cr) {
-        Tache tache = new TacheDecomposee(a, b, c, d, e, f);
-        Duration duree= Duration.ofMinutes(b);
-        if(Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree)>0&&(Cr.verifDureeMin()))
+    public Creneau ajoutertache(String a, int b, String c, String d, String e, String f, Creneau Cr, Planning plan) {
 
-        {   Cr.decomposition(tache);
-            Cr.tachescr = tache;
+        boolean decomposable=false;
+        if(decomposable) {
+            Tache tache = new TacheDecomposee(a, b, c, d, e, f); //choisir entre tache simple ou decomposée
+            Duration duree = Duration.ofMinutes(b);
+            if (Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
+                Cr.decomposition(tache, Cr, plan);
 
-        }else {
-            ((TacheDecomposee) tache).decomposition(tache);
+
+            } else {
+                ((TacheDecomposee) tache).decomposition(tache, Cr, plan);
+            }
         }
+        else {
+
+            Tache tache = new TacheSimple(a, b, c, d, e, f); //choisir entre tache simple ou decomposée
+            Duration duree = Duration.ofMinutes(b);
+            if (Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
+                Cr.decomposition(tache, Cr, plan);
+
+
+            } else {
+                //impossible de planifier la tache dans ce créneau
+                //exception
+            }
+
+
+        }
+
             return Cr;
         }
 
@@ -49,32 +66,39 @@ public class Utilisateur {
 
 
 
-    public Creneaux plannifierTache(){
-        Creneaux Cr=new Creneaux();//choisir parmis les créneaux libres
+    public Planning plannifierTache(Planning planning){
+        int i=0;
+        Creneau Cr=planning.creneauxlibres[i];//selectionner parmis les créneaux libres
     String a="", c="",d="",e="",f="";
     int b=30;
-    ajoutertache(a,b,c,d,e,f,Cr);
+    ajoutertache(a,b,c,d,e,f,Cr,planning);
+        for (int j = i; j < planning.creneauxlibres.length - 1; j++) {  //suppression du créneau libre
+            planning.creneauxlibres[j] = planning.creneauxlibres[j + 1];
+        }
+        planning.creneauxlibres[planning.creneauxlibres.length - 1] = null;
 
     boolean bol=false;
-    if(bol){Cr.bloquer();}
+    if(bol){Cr.bloque=true;}
 
-    return Cr;
-
+    return planning;
     }
+
 
     public Planning setCrLibres(Planning planning){
         LocalDate date;
         int day=0,month=0,year=0;//select day//create creneaux for it
         date=LocalDate.of(year,month,day);
 
-        Creneaux[] creneauxlibres= new Creneaux[5];
+        Creneau[] creneauxlibres= new Creneau[5];
 
         for (int i = 0; i < 5; i++) {
-            planning.creneauxlibres[i] = new Creneaux();
+            planning.creneauxlibres[i] = new Creneau();
             date = date.plusDays(1);
         }
         planning.creneauxlibres=creneauxlibres;
     return planning;}
+
+
 
     public Planning setPeriode(){
         Planning planning=new Planning() ;
@@ -89,29 +113,12 @@ public class Utilisateur {
 
 
 
-/*
-    public Planning creerPlanning(boolean man) {
-        Planning plan= new Planning();
 
 
-        if(){
-            return(planificationManuelle(plan));
-        }
-        else{
-            return(planificationAuto(plan));
-        }
 
-        return null;
-         }
-*/
-
-
-        public Planning planificationManuelle (Planning planning){
-
-            return null;
-        }
 
         public Planning planificationAuto (Planning planning){
+
 
 
             return planning;

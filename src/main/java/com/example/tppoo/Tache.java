@@ -7,8 +7,8 @@ public class Tache {
     public int duree;
     public Priorite priorite;
     private String deadline;
-    private String dateDebut;
-    private String dateFin;
+    protected String dateDebut;
+    protected String dateFin;
 
 
 
