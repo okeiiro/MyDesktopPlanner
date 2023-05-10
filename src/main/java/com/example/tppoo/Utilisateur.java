@@ -28,6 +28,7 @@ public class Utilisateur {
             Duration duree = Duration.ofMinutes(b);
             if (Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
                 Cr.decomposition(tache, Cr, plan);
+                plan.trouverJour(Cr.jour).TachesDuJour[plan.trouverJour(Cr.jour).TachesDuJour.length]=tache;
 
 
             } else {

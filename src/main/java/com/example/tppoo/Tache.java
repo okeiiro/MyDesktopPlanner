@@ -7,17 +7,17 @@ public class Tache {
     public int duree;
     public Priorite priorite;
     private String deadline;
-    protected String dateDebut;
-    protected String dateFin;
+    protected String HeureDebut;
+    protected String HeureFin;
 
 
 
-    public Tache(String nom, int duree,String priorite, String deadline,String dateDebut,String dateFin) {
+    public Tache(String nom, int duree,String priorite, String deadline,String HeureDebut,String HeureFin) {
         this.nom = nom;
         this. duree= duree;
         this.deadline= deadline;
-        this.dateDebut=dateDebut;
-        this.dateFin=dateFin;
+        this.HeureDebut =HeureDebut;
+        this.HeureFin =HeureFin;
         if (priorite==("low")){
             this.priorite=low;}
         else if (priorite==("high")){
