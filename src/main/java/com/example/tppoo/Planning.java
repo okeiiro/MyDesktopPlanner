@@ -1,12 +1,14 @@
 package com.example.tppoo;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Planning {
     protected LocalDate datedebut;//periode specifié par l'utilisateur
     protected LocalDate datefin;
     protected long period;  //en jours
-    protected Journee[] joursPlanning; //non ordonnés
+    protected Journee[] joursPlanning; // ordonnés
     protected Creneau[] creneauxlibres; //ordonnés
 
 
@@ -53,5 +55,31 @@ public class Planning {
     }
 
     */
+
+    public Tache[] TriTaches(Tache[] tachesTri){
+
+        // Define a custom Comparator that compares Tasks by due date
+        Comparator<Tache> byDueDate = Comparator.comparing(Tache::getdeadline);
+
+// Sort the array using the Comparator
+        Arrays.sort(tachesTri, byDueDate);
+
+    return tachesTri;
+    }
+
+ public void afficherCrLibres(){
+
+        for (int i = 0; i < creneauxlibres.length; i++) {
+
+            System.out.println(creneauxlibres[i].HeureDebut +" "+ creneauxlibres[i].HeureFin);
+
+        }
+
+
+ }
+
+
+
+
 
 }

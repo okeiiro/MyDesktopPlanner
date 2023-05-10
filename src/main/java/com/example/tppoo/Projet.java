@@ -5,6 +5,15 @@ public class Projet {
     private String description;
     private Tache [] tachespr;
 
+
+
+    public Projet(String nom, String Desc,Tache[] tachespr){
+
+        this.nom=nom;
+        description=Desc;
+        this.tachespr=tachespr;
+    }
+
     public void afficherPr(){
 
     }
@@ -17,6 +26,9 @@ public class Projet {
 
     public void ajoutertache(){}
 
-    public void supprimertache(){}
+    public void supprimertache(){
+
+
+    }
 
 }

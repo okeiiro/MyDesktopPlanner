@@ -15,10 +15,10 @@ public class TacheSimple extends Tache {
     }
 
     public void TachePeriodique(Utilisateur user, Planning planning, Tache tache){
-        LocalDate date = LocalDate.parse(tache.HeureDebut).plusDays(periodicite);
+        LocalDate date = tache.Jour.plusDays(periodicite);
         while(date.compareTo(planning.datefin)  <0)
         {
-            date = LocalDate.parse(tache.HeureDebut).plusDays(periodicite);
+            date = tache.Jour.plusDays(periodicite);
             Creneau creneauTrouve = null;
 
             // Recherche du créneau avec l'attribut jour égal à date
@@ -27,7 +27,7 @@ public class TacheSimple extends Tache {
                     creneauTrouve = creneau;//si ce jour existe déjà dans le créneau libre c ok sinon exception
                     LocalDate dateRecherchee = date;
 
-                    // Recherche du créneau avec l'attribut date égal à 2023-05-10
+                    // Recherche du créneau avec l'attribut date égal à date
                        Journee JourRech=planning.trouverJour(date);
                         if (JourRech!=null) {
                             JourRech.TachesDuJour[JourRech.TachesDuJour.length+1] = creneau.tachecr;

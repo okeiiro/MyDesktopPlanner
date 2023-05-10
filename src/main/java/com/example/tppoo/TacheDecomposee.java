@@ -1,9 +1,11 @@
 package com.example.tppoo;
 
+import java.time.LocalTime;
+
 public class TacheDecomposee extends Tache implements Decomposable{
 
 
-    public TacheDecomposee(String a, int b, String c, String d, String e, String f) {
+    public TacheDecomposee(String a, int b, String c, String d, String e, String f) {//enlever e et f
     }
 
     public boolean valider() {
@@ -22,9 +24,15 @@ public class TacheDecomposee extends Tache implements Decomposable{
     }
 
     @Override
-    public void decomposition(Tache tache, Creneau Cr, Planning planning) {
+    public void decomposition(Tache tache, Creneau Cr, Planning planning, int i) {
 
-
+        tache.HeureFin= Cr.HeureFin;
+        Tache tache2= new Tache();
+        tache2=tache;
+        tache2.setNom(tache.getNom().concat("2"));
+        planning.trouverJour(Cr.jour).TachesDuJour[planning.trouverJour(Cr.jour).TachesDuJour.length]=tache;
+        tache=tache2; //condition d'arret ou exceptions jsp
+        i++;
 
     }
 }

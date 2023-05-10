@@ -4,5 +4,5 @@ public interface Decomposable {
 
     //void decomposition();
 
-    void decomposition(Tache tache, Creneau Cr, Planning planning);
+    void decomposition(Tache tache, Creneau Cr, Planning planning,int i);
 }

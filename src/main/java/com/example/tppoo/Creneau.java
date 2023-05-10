@@ -28,16 +28,17 @@ public class Creneau implements Decomposable{
 
 
     @Override
-    public void decomposition(Tache tache, Creneau Cr, Planning planning) {
+    public void decomposition(Tache tache, Creneau Cr, Planning planning,int i) {
 
-        Cr.HeureFin= LocalTime.parse(tache.HeureDebut);
-        Cr.tachecr =tache;
-        Creneau CrDecompose= new Creneau();
-        CrDecompose.HeureDebut=LocalTime.parse(tache.HeureDebut);
-        CrDecompose.HeureFin=LocalTime.parse(tache.HeureFin);
+        tache.HeureDebut=Cr.HeureDebut;
+        tache.HeureFin=Cr.HeureDebut.plusMinutes(tache.duree);
+        Cr.HeureDebut=Cr.HeureDebut.plusMinutes(tache.duree); //le nouveau créneau libre
 
-        planning.creneauxlibres[planning.creneauxlibres.length+1]=CrDecompose;
-        Duration.ofMinutes(tache.duree);
+
+        planning.creneauxlibres[i]=Cr; //prend la placement de l'ancien creneau libre dans creneauxlibres
+       // Duration.ofMinutes(tache.duree);
+
+        // exception
 
 
 
@@ -46,6 +47,8 @@ public class Creneau implements Decomposable{
    public void libererCreneau(){
 
    }
+
+
 
 
 }
