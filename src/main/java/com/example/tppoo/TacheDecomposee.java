@@ -26,11 +26,11 @@ public class TacheDecomposee extends Tache implements Decomposable{
     @Override
     public void decomposition(Tache tache, Creneau Cr, Planning planning, int i) {
 
-        tache.HeureFin= Cr.HeureFin;
+        tache.HeureFin= Cr.getHeureFin();
         Tache tache2= new Tache();
         tache2=tache;
         tache2.setNom(tache.getNom().concat("2"));
-        planning.trouverJour(Cr.jour).TachesDuJour[planning.trouverJour(Cr.jour).TachesDuJour.length]=tache;
+        planning.trouverJour(Cr.getJour()).TachesDuJour[planning.trouverJour(Cr.getJour()).TachesDuJour.length]=tache;
         tache=tache2; //condition d'arret ou exceptions jsp
         i++;
 

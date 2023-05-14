@@ -6,11 +6,32 @@ import java.time.Duration;
 
 public class Creneau implements Decomposable{
 
- protected LocalDate jour;
- protected LocalTime HeureDebut;
- protected LocalTime HeureFin;
+ private LocalDate jour;
+
+    public LocalTime getHeureDebut() {
+        return HeureDebut;
+    }
+
+    private LocalTime HeureDebut;
+
+    public LocalTime getHeureFin() {
+        return HeureFin;
+    }
+
+    private LocalTime HeureFin;
  private static int dureeMin;
- protected Tache tachecr;
+
+    public LocalDate getJour() {
+
+
+        return jour;
+    }
+
+    public Tache getTachecr() {
+        return tachecr;
+    }
+
+    private Tache tachecr;
  protected boolean bloque;
 
 

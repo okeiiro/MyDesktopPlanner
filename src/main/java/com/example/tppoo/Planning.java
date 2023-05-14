@@ -71,7 +71,7 @@ public class Planning {
 
         for (int i = 0; i < creneauxlibres.length; i++) {
 
-            System.out.println(creneauxlibres[i].HeureDebut +" "+ creneauxlibres[i].HeureFin);
+            System.out.println(creneauxlibres[i].getHeureDebut() +" "+ creneauxlibres[i].getHeureFin());
 
         }
 

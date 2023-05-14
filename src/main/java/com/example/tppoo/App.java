@@ -1,7 +1,15 @@
 package com.example.tppoo;
 
-public class Application {
-    protected Utilisateur[] utilisateurs;
+public class App {
+    public Utilisateur[] getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Utilisateur[] utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
+
+    private Utilisateur[] utilisateurs;
 
 
     public void ajouterUtilisateur(int i,String nom){
@@ -28,7 +36,7 @@ public class Application {
             if (users[i].pseudo.toUpperCase().equals(nom.toUpperCase())) {
                 user=users[i];
                 find=true;
-                System.out.println("found you!!");
+                System.out.println("l'utilisateur existe déjà");
 
             }
             i++;

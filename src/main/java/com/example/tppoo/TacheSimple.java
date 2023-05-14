@@ -23,14 +23,14 @@ public class TacheSimple extends Tache {
 
             // Recherche du créneau avec l'attribut jour égal à date
             for (Creneau creneau : planning.creneauxlibres) {
-                if (creneau.jour.equals(date)) {
+                if (creneau.getJour().equals(date)) {
                     creneauTrouve = creneau;//si ce jour existe déjà dans le créneau libre c ok sinon exception
                     LocalDate dateRecherchee = date;
 
                     // Recherche du créneau avec l'attribut date égal à date
                        Journee JourRech=planning.trouverJour(date);
                         if (JourRech!=null) {
-                            JourRech.TachesDuJour[JourRech.TachesDuJour.length+1] = creneau.tachecr;
+                            JourRech.TachesDuJour[JourRech.TachesDuJour.length+1] = creneau.getTachecr();
 
                         } else {
                             Journee jour=new Journee();

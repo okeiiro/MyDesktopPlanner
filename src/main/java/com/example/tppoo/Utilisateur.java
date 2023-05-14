@@ -25,14 +25,14 @@ public class Utilisateur {
     }
 
     public Creneau ajoutertache(Tache tache, Creneau Cr, Planning plan, int i) {
-        tache.Jour = Cr.jour;
+        tache.Jour = Cr.getJour();
         //boolean decomposable=false;
         if (tache instanceof TacheDecomposee) {
 
             Duration duree = Duration.ofMinutes(tache.duree);
-            if (Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
+            if (Duration.between(Cr.getHeureDebut(), Cr.getHeureFin()).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
                 Cr.decomposition(tache, Cr, plan, i);
-                plan.trouverJour(Cr.jour).TachesDuJour[plan.trouverJour(Cr.jour).TachesDuJour.length] = tache;
+                plan.trouverJour(Cr.getJour()).TachesDuJour[plan.trouverJour(Cr.getJour()).TachesDuJour.length] = tache;
 
 
             } else {
@@ -43,10 +43,10 @@ public class Utilisateur {
         } else { //tache simple
 
             Duration duree = Duration.ofMinutes(tache.duree);
-            if (Duration.between(Cr.HeureDebut, Cr.HeureFin).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
+            if (Duration.between(Cr.getHeureDebut(), Cr.getHeureFin()).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
                 Cr.decomposition(tache, Cr, plan, i);
-                tache.HeureDebut = Cr.HeureDebut;
-                plan.trouverJour(Cr.jour).TachesDuJour[plan.trouverJour(Cr.jour).TachesDuJour.length] = tache;
+                tache.HeureDebut = Cr.getHeureDebut();
+                plan.trouverJour(Cr.getJour()).TachesDuJour[plan.trouverJour(Cr.getJour()).TachesDuJour.length] = tache;
 
 
             } else {
