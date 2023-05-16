@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.HelloController">
+   <children>
+      <TextField fx:id="hdfield" layoutX="213.0" layoutY="142.0" prefHeight="26.0" prefWidth="58.0" promptText="13h30" />
+      <TextField fx:id="hffield" layoutX="213.0" layoutY="209.0" prefHeight="26.0" prefWidth="58.0" promptText="17h" />
+      <Text layoutX="250.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau du " />
+      <Text layoutX="117.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure début:" />
+      <Text layoutX="117.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure fin:" />
+      <Text fx:id="dayDisplay" layoutX="331.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Button layoutX="260.0" layoutY="263.0" mnemonicParsing="false" onAction="#setCreneau" text="Jour suivant" />
+   </children>
+</AnchorPane>

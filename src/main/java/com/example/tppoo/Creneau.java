@@ -6,7 +6,15 @@ import java.time.Duration;
 
 public class Creneau implements Decomposable{
 
- private LocalDate jour;
+    public void setJour(LocalDate jour) {
+        this.jour = jour;
+    }
+
+    private LocalDate jour;
+
+    public void setHeureDebut(LocalTime heureDebut) {
+        HeureDebut = heureDebut;
+    }
 
     public LocalTime getHeureDebut() {
         return HeureDebut;

@@ -89,28 +89,28 @@ public class Utilisateur {
     }
 
 
-    public Planning setCrLibres(Planning planning) {
-        LocalDate date = planning.datedebut;
+    public void setCrLibres(Planning planning, LocalDate date) {
+        //LocalDate date = planning.datedebut;
         int p = (int) planning.period;
         Creneau[] creneauxlibres = new Creneau[p];
 
         for (int i = 0; i < p; i++) {
             creneauxlibres[i] = new Creneau();//lecture des horraires par l'utilisateur
+            creneauxlibres[i].setJour(date);
             date = date.plusDays(1);
 
         }
         planning.creneauxlibres = creneauxlibres;
-        return planning;
     }
 
 
-    public Planning setPeriode() {
+    public Planning setPeriode(int day, int month, int year, int day2, int month2, int year2) {
         Planning planning = new Planning();
 
-        int day = 0, month = 0, year = 0, day2 = 0, month2 = 0, year2 = 0;
         planning.datedebut = LocalDate.of(year, month, day);//exception date du jour
-        planning.datefin = LocalDate.of(year, month, day);
+        planning.datefin = LocalDate.of(year2, month2, day2);
         planning.period = ChronoUnit.DAYS.between(planning.datedebut, planning.datefin);
+
 
 
         return planning;
