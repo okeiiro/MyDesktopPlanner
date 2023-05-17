@@ -3,17 +3,35 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.HelloController">
+<AnchorPane prefHeight="504.0" prefWidth="810.0" style="-fx-background-color: #1c1f24;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.CreneauxLibresController">
    <children>
-      <TextField fx:id="hdfield" layoutX="213.0" layoutY="142.0" prefHeight="26.0" prefWidth="58.0" promptText="13h30" />
-      <TextField fx:id="hffield" layoutX="213.0" layoutY="209.0" prefHeight="26.0" prefWidth="58.0" promptText="17h" />
-      <Text layoutX="250.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau du " />
-      <Text layoutX="117.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure début:" />
-      <Text layoutX="117.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure fin:" />
-      <Text fx:id="dayDisplay" layoutX="331.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Button layoutX="260.0" layoutY="263.0" mnemonicParsing="false" onAction="#setCreneau" text="Jour suivant" />
+      <TextField fx:id="hdfield" layoutX="455.0" layoutY="142.0" prefHeight="26.0" prefWidth="58.0" promptText="13:30" />
+      <TextField fx:id="hffield" layoutX="455.0" layoutY="213.0" prefHeight="26.0" prefWidth="58.0" promptText="17:00" />
+      <Text fill="#f2e7e7" layoutX="306.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau du ">
+         <font>
+            <Font name="Calibri Bold" size="19.0" />
+         </font>
+      </Text>
+      <Text fill="#e4dada" layoutX="286.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure début:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#e7dddd" layoutX="296.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure fin:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="dayDisplay" fill="#eadddd" layoutX="438.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button layoutX="361.0" layoutY="312.0" mnemonicParsing="false" onAction="#setCreneau" text="Jour suivant" textOverrun="CENTER_ELLIPSIS" />
+      <Button fx:id="creercreneau" layoutX="378.0" layoutY="365.0" mnemonicParsing="false" onAction="#AfficherCreneau" text="Créer" visible="false" />
    </children>
 </AnchorPane>

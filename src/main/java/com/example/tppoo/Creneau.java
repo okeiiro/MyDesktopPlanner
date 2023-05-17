@@ -22,6 +22,10 @@ public class Creneau implements Decomposable{
 
     private LocalTime HeureDebut;
 
+    public void setHeureFin(LocalTime heureFin) {
+        HeureFin = heureFin;
+    }
+
     public LocalTime getHeureFin() {
         return HeureFin;
     }

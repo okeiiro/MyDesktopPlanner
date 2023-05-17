@@ -89,7 +89,7 @@ public class Utilisateur {
     }
 
 
-    public void setCrLibres(Planning planning, LocalDate date) {
+    /*public void setCrLibres(Planning planning, LocalDate date) {
         //LocalDate date = planning.datedebut;
         int p = (int) planning.period;
         Creneau[] creneauxlibres = new Creneau[p];
@@ -101,7 +101,7 @@ public class Utilisateur {
 
         }
         planning.creneauxlibres = creneauxlibres;
-    }
+    }*/
 
 
     public Planning setPeriode(int day, int month, int year, int day2, int month2, int year2) {

@@ -2,17 +2,26 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="426.0" prefWidth="651.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.HelloController">
+<VBox alignment="CENTER" prefHeight="504.0" prefWidth="810.0" spacing="20.0" style="-fx-background-color: #1c1f24;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Button fx:id="strt" onAction="#Start" text="start" />
-   <TextField fx:id="champseudo" maxWidth="-Infinity" onAction="#Start" prefHeight="34.0" prefWidth="192.0" promptText="Pseudo" />
+   <Text fill="#ece3e3" strokeType="OUTSIDE" strokeWidth="0.0" text="Desktop Planner" translateY="-50.0">
+      <font>
+         <Font name="Symbol" size="40.0" />
+      </font>
+   </Text>
+   <Button fx:id="strt" onAction="#Start" text="Get started" />
+   <TextField fx:id="champseudo" maxWidth="-Infinity" onAction="#Start" prefHeight="34.0" prefWidth="192.0" promptText="Pseudo" visible="false" />
 
     <Label fx:id="welcomeText" />
-   <Button layoutX="308.0" layoutY="279.0" onAction="#Authentification" text="Valider" />
+   <Button fx:id="valider" layoutX="308.0" layoutY="279.0" onAction="#Authentification" text="Valider" translateX="1.0" translateY="18.0" visible="false" />
+   <DatePicker />
 </VBox>

@@ -6,27 +6,53 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ResourceBundle;
 
-public class HelloController {
+public class HelloController implements Initializable {
 
     private static App app;
+
+    public static void setI(int i) {
+        HelloController.i = i;
+    }
+
+    public static int getI() {
+        return i;
+    }
+
+    public static void setDate(LocalDate date) {
+        HelloController.date = date;
+    }
+
+    public static LocalDate getDate() {
+        return date;
+    }
+
     private static LocalDate date;
 
+    @FXML
+    private Button valider;
 
     @FXML
+    private Button creercreneau;
+    @FXML
     private TextField hdfield;
+
+    public static Planning getPlan() {
+        return plan;
+    }
+
     @FXML
     private TextField hffield;
     @FXML
@@ -126,18 +152,44 @@ public class HelloController {
         int month2= Integer.parseInt(monthfield2.getText());
         int year2= Integer.parseInt(yearfield2.getText());
 
-        plan=user.setPeriode(day,month,year,day2,month2,year2);
-        System.out.println(plan.period);
+        boolean dateValide = true;
 
-        Parent root= FXMLLoader.load(getClass().getResource("CreneauxLibres.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        i=0;
-        plan.creneauxlibres =new Creneau[(int) plan.period];
-        date= plan.datedebut;
+            LocalDate dateSaisie = LocalDate.of(year, month, day); // Obtenez la date saisie par l'utilisateur
+            LocalDate dateSaisie2 = LocalDate.of(year2, month2, day2);
+            LocalDate dateActuelle = LocalDate.now(); // Obtenez la date d'aujourd'hui
 
+            if ((dateSaisie.isBefore(dateActuelle))||(dateSaisie2.isBefore(dateSaisie))) {
+                dateValide = false;
+            }
+
+
+            if(!dateValide){
+                // La date saisie est antérieure à la date d'aujourd'hui, affichez l'alerte
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Date invalide");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez saisir des dates valides.");
+
+                alert.showAndWait();
+            }
+
+
+
+
+        else {
+            plan = user.setPeriode(day, month, year, day2, month2, year2);
+            System.out.println(plan.period);
+
+            Parent root = FXMLLoader.load(getClass().getResource("CreneauxLibres.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            i = 0;
+            plan.creneauxlibres = new Creneau[(int) plan.period + 1];
+            date = plan.datedebut;
+
+        }
 
 
 
@@ -145,41 +197,34 @@ public class HelloController {
     }
 
 
-    @FXML
-    void setCreneau(ActionEvent event) {
-        //dayDisplay.setText(String.valueOf(plan.datedebut));
 
-        int p=(int)plan.period;
-       // Creneau[] creneauxlibres =new Creneau[p];
-        if(i<p) {
-            plan.creneauxlibres[i]= new Creneau();
-            plan.creneauxlibres[i].setHeureDebut(LocalTime.parse(hdfield.getText()));
-            plan.creneauxlibres[i].setHeureDebut(LocalTime.parse(hffield.getText()));
-            plan.creneauxlibres[i].setJour(date);
-            date = date.plusDays(1);
-            System.out.println(i);
-            System.out.println(date);
-
-            dayDisplay.setText(String.valueOf(date));
-            System.out.println(plan.creneauxlibres[i].getHeureDebut());
-            i++;
-
-        }
-        }
 
 
 
 
     @FXML
     void Start(ActionEvent event) {
+        strt.setVisible(false);
+        champseudo.setVisible(true);
+        valider.setVisible(true);
         app= new App();
         Utilisateur[] users =app.start();
         app.setUtilisateurs(users);
     }
 
 
+@Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Event handling code for scene initialization
+        System.out.println("Scene is initialized");
+        //strt.setVisible(true);
+       // champseudo.setVisible(false);
+      //  valider.setVisible(true);
 
+        // Add your event handling logic here
+    }
 
 
 
 }
+
