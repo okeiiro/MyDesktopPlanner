@@ -15,20 +15,33 @@ public class Planning {
     public Journee trouverJour(LocalDate dateRech) { //renvoie le jour recherché sinon renvoie
         boolean trouv = false;
         int i = 0;
-        if (dateRech.isBefore(datefin)){//date recherché avant date liite periode
+        joursPlanning[i]=new Journee();
+        joursPlanning[i].TachesDuJour=new Tache[30];
+        joursPlanning[i].TachesDuJour[0]= new Tache();
+        if (dateRech.isBefore(datefin)){//date recherché avant date limite periode
+            while(joursPlanning!=null)
             for (i = 0; i < joursPlanning.length; i++) { //si le jour se trouve déjà dans le planning
-
+                joursPlanning[i]=new Journee();
                 if (joursPlanning[i].date.equals(dateRech)) {
                     trouv = true;
                     break;
-
                 }
             }
         if (trouv = false) {
             i = joursPlanning.length + 1;
+
+
         }
 
     }
+        if(joursPlanning.length==0){
+            i=0; //remplir la 1ère case du tableau s'il est vide
+
+
+
+        }
+        System.out.println("jourPlanning[i]: "+joursPlanning[i].date);
+
         return joursPlanning[i];
 
     }
@@ -78,6 +91,9 @@ public class Planning {
 
  }
 
+ void Planning(){
+
+ }
 
 
 

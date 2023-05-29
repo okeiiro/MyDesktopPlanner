@@ -18,12 +18,16 @@ public class Tache {
         this.etat = etat;
     }
 
+    public EtatTache getEtat() {
+        return etat;
+    }
+
     private EtatTache etat;
 
     private Categorie cat;
     private String nom;
-    public int duree;
-    public Priorite priorite;
+    protected int duree;
+    protected Priorite priorite;
 
     public String getdeadline() {
         return deadline;
@@ -38,6 +42,8 @@ public class Tache {
     public Tache(String nom, int duree,String priorite, String deadline) {
         this.nom = nom;
         this. duree= duree;
+        System.out.println("duree constructeur: "+this.duree);
+
         this.deadline= deadline;
        // this.HeureDebut =HeureDebut;
        // this.HeureFin =HeureFin;
@@ -52,4 +58,6 @@ public class Tache {
     public Tache() {
 
     }
+
+
 }

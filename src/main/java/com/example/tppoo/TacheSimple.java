@@ -10,16 +10,16 @@ public class TacheSimple extends Tache {
     }
 
 
-    public TacheSimple(String a, int b, String c, String d, String e, String f) {
+    public TacheSimple(String a, int b, String c, String d) {
 
     }
 
     public void TachePeriodique(Utilisateur user, Planning planning, Tache tache){
         LocalDate date = tache.Jour.plusDays(periodicite);
-        while(date.compareTo(planning.datefin)  <0)
+        while(date.compareTo(planning.datefin)  <0) //tant qu'on a pas atteint la date fin du planning
         {
             date = tache.Jour.plusDays(periodicite);
-            Creneau creneauTrouve = null;
+            Creneau creneauTrouve = new Creneau();
 
             // Recherche du créneau avec l'attribut jour égal à date
             for (Creneau creneau : planning.creneauxlibres) {

@@ -5,20 +5,20 @@ import java.util.Locale;
 
 public class Journee {
     protected LocalDate date;
-    //  private Creneau creneauLibre;  ?
+    protected int nbTachTotales=0;
     protected Tache[] TachesDuJour; //peuvent être plusieurs
-    static int nbTacheMin = 3;
-    static int nbReussite=0;
-    private int nbTachRealise=0;
+    protected static int nbTacheMin = 3;
+    protected static int nbReussite=0;
+   protected static int nbTachRealise=0;
 
 
-    public void SetEtat() {
+    public void SetEtat(String state) {
         int i=0;
         while ( i<TachesDuJour.length)
-        {   String state="";
+        {
             if(state.toUpperCase(Locale.ROOT).equals("COMPLETED"))
             { TachesDuJour[i].setEtat(EtatTache.Completed);
-                nbTachRealise++;
+                nbTachRealise++; //si l'état de la tache est completed, le nombre de taches réalisées dans ce jour est incrémenté
             }
 
             if(state.toUpperCase(Locale.ROOT).equals("NOTREALIZED"))
@@ -43,7 +43,7 @@ public class Journee {
             nbReussite++;
         }
         if(nbReussite==5){
-           // planning.setBadges()=
+
 
         }
         if(nbReussite==15){
@@ -57,6 +57,10 @@ public class Journee {
 
     }
 
+void Journee(){
+        this.TachesDuJour=TachesDuJour;
+        this.date=date;
 
+}
 
 }

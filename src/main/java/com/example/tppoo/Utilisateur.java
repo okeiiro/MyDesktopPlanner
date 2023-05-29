@@ -3,10 +3,14 @@ package com.example.tppoo;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 import static com.example.tppoo.Priorite.*;
 
 public class Utilisateur {
+    private List<Tache> taches;
+    private List<Categorie> categories;
+    private List<Creneau> creneaus;
     public String pseudo;
 
 
@@ -15,6 +19,9 @@ public class Utilisateur {
     private Planning[] historique;
     private Badges badge;
     private Tache[] tachenonplan;
+
+
+
 
 
     public void ajouterProjet() {
@@ -28,16 +35,22 @@ public class Utilisateur {
         tache.Jour = Cr.getJour();
         //boolean decomposable=false;
         if (tache instanceof TacheDecomposee) {
-
+            System.out.println("tache décomposable!");
             Duration duree = Duration.ofMinutes(tache.duree);
-            if (Duration.between(Cr.getHeureDebut(), Cr.getHeureFin()).compareTo(duree) > 0 && (Cr.verifDureeMin())) {
+            if (((Duration.between(Cr.getHeureDebut(), Cr.getHeureFin()).compareTo(duree)) > 0) && (Cr.verifDureeMin())) {
+                System.out.println("on va decomposer le creneau");
                 Cr.decomposition(tache, Cr, plan, i);
-                plan.trouverJour(Cr.getJour()).TachesDuJour[plan.trouverJour(Cr.getJour()).TachesDuJour.length] = tache;
+                System.out.println("heure debut apres decomposition: "+Cr.getHeureDebut());
+                System.out.println("heure fin de la tache: "+tache.HeureFin);
+                plan.trouverJour(Cr.getJour()).TachesDuJour=new Tache[30];
+                plan.trouverJour(Cr.getJour()).TachesDuJour[plan.trouverJour(Cr.getJour()).TachesDuJour.length-1]= tache;
+                //la dernière case du tableau TachesDuJour de la journée concerné reçoit la nouvelle tache
 
 
-            } else {
+            } else if(Cr.verifDureeMin()) {
                 ((TacheDecomposee) tache).decomposition(tache, Cr, plan, i);
                 ajoutertache(tache, plan.creneauxlibres[i], plan, i);
+
 
             }
         } else { //tache simple
@@ -60,6 +73,9 @@ public class Utilisateur {
         return Cr;
     }
 
+
+
+
     public void classerTache() {
 
     }
@@ -72,13 +88,9 @@ public class Utilisateur {
 
 
     public Planning plannifierTache(Planning planning, Creneau Cr, Tache tache, int i) {
-        //int i=rang fu cr libre
+        //int i=rang du cr libre
 
         ajoutertache(tache, Cr, planning, i);
-        for (int j = i; j < planning.creneauxlibres.length - 1; j++) {  //suppression du créneau libre
-            planning.creneauxlibres[j] = planning.creneauxlibres[j + 1]; //si elle n'est pas planifié exceptiob
-        }
-        planning.creneauxlibres[planning.creneauxlibres.length - 1] = null;
 
         boolean bol = false;  //bloquer creneau
         if (bol) {
@@ -89,19 +101,7 @@ public class Utilisateur {
     }
 
 
-    /*public void setCrLibres(Planning planning, LocalDate date) {
-        //LocalDate date = planning.datedebut;
-        int p = (int) planning.period;
-        Creneau[] creneauxlibres = new Creneau[p];
 
-        for (int i = 0; i < p; i++) {
-            creneauxlibres[i] = new Creneau();//lecture des horraires par l'utilisateur
-            creneauxlibres[i].setJour(date);
-            date = date.plusDays(1);
-
-        }
-        planning.creneauxlibres = creneauxlibres;
-    }*/
 
 
     public Planning setPeriode(int day, int month, int year, int day2, int month2, int year2) {
@@ -122,7 +122,7 @@ public class Utilisateur {
         taches = planning.TriTaches(taches);
         int i = 0, j = 0;
         while (i < taches.length + 1) {
-            if (taches[i].priorite == high) {
+            if (taches[i].priorite == high) {//commencer par planifier les taches de haute priorité
 
                 plannifierTache(planning, planning.creneauxlibres[j], taches[i], j);
 
@@ -158,15 +158,16 @@ public class Utilisateur {
     }
 
 
-    public Planning planificationManuelle(Planning planning, String a, int b, String c, String d, String e, String f, boolean decomposable) {   //planning.afficherCrLibres();
-        //selectionner créneau vide
-        int i = 2;//par exemple
+    public Planning planificationManuelle(Planning planning, String a, int b, String c, String d, boolean decomposable, int i) {   //planning.afficherCrLibres();
+        //i c'est l'indice du créneau libre choisi
         Tache task;
         Creneau Cr = planning.creneauxlibres[i];
         if (decomposable) {
-            task = new TacheDecomposee(a, b, c, d, e, f);
+            task = new TacheDecomposee(a, b, c, d);
+            System.out.println("duree manuelle: "+task.duree);
+
         } else {
-            task = new TacheSimple(a, b, c, d, e, f);
+            task = new TacheSimple(a, b, c, d);
 
         }
         plannifierTache(planning, Cr, task, i);
@@ -183,6 +184,9 @@ public class Utilisateur {
         //projets[projets.length]=projet;
 
         return projet;
+    }
+    public String getPseudo() {
+        return pseudo;
     }
 
 }

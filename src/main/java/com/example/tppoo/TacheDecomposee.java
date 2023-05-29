@@ -5,8 +5,6 @@ import java.time.LocalTime;
 public class TacheDecomposee extends Tache implements Decomposable{
 
 
-    public TacheDecomposee(String a, int b, String c, String d, String e, String f) {//enlever e et f
-    }
 
     public boolean valider() {
 
@@ -18,9 +16,9 @@ public class TacheDecomposee extends Tache implements Decomposable{
 
     }
 
-    public TacheDecomposee()
+    public TacheDecomposee(String a,int b,String c, String d)
     {
-        super();
+        super(a,b,c,d);
     }
 
     @Override
@@ -30,8 +28,9 @@ public class TacheDecomposee extends Tache implements Decomposable{
         Tache tache2= new Tache();
         tache2=tache;
         tache2.setNom(tache.getNom().concat("2"));
+        tache2.setNom("tache2");
         planning.trouverJour(Cr.getJour()).TachesDuJour[planning.trouverJour(Cr.getJour()).TachesDuJour.length]=tache;
-        tache=tache2; //condition d'arret ou exceptions jsp
+        tache=tache2; //condition d'arret ou exceptions
         i++;
 
     }

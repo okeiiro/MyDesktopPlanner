@@ -31,5 +31,11 @@
          </font>
       </Text>
       <Button fx:id="confirm" layoutX="370.0" layoutY="404.0" mnemonicParsing="false" onAction="#periode" text="Confirmer" />
+      <TextField fx:id="dureeminfield" layoutX="643.0" layoutY="239.0" prefHeight="26.0" prefWidth="81.0" promptText="30" />
+      <Text fill="#e1dcdc" layoutX="598.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Durée minimum d'un créneau :">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

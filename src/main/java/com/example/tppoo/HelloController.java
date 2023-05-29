@@ -49,6 +49,9 @@ public class HelloController implements Initializable {
     @FXML
     private TextField hdfield;
 
+    @FXML
+    private TextField dureeminfield;
+
     public static Planning getPlan() {
         return plan;
     }
@@ -66,7 +69,7 @@ public class HelloController implements Initializable {
         return user;
     }
 
-    private static Utilisateur user;
+    protected static Utilisateur user;
     private static Planning plan;
     private static int i;
     private Stage stage;
@@ -123,6 +126,7 @@ public class HelloController implements Initializable {
         stage.show();
         System.out.println("pseudo="+getUser().pseudo);
 
+
     }
 
 
@@ -153,6 +157,8 @@ public class HelloController implements Initializable {
         int year2= Integer.parseInt(yearfield2.getText());
 
         boolean dateValide = true;
+        Creneau.setDureeMin(Integer.parseInt(dureeminfield.getText()));
+        System.out.println("duree= " + Creneau.getDureeMin());
 
             LocalDate dateSaisie = LocalDate.of(year, month, day); // Obtenez la date saisie par l'utilisateur
             LocalDate dateSaisie2 = LocalDate.of(year2, month2, day2);
@@ -178,6 +184,7 @@ public class HelloController implements Initializable {
 
         else {
             plan = user.setPeriode(day, month, year, day2, month2, year2);
+            plan.joursPlanning= new Journee[(int) plan.period];
             System.out.println(plan.period);
 
             Parent root = FXMLLoader.load(getClass().getResource("CreneauxLibres.fxml"));
@@ -196,7 +203,11 @@ public class HelloController implements Initializable {
 
     }
 
+    @FXML
+    void suivant(ActionEvent event) {
 
+
+    }
 
 
 
@@ -226,5 +237,7 @@ public class HelloController implements Initializable {
 
 
 
+
+    
 }
 

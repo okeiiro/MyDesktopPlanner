@@ -31,7 +31,17 @@ public class Creneau implements Decomposable{
     }
 
     private LocalTime HeureFin;
- private static int dureeMin;
+
+    public static void setDureeMin(int dureeMin) {
+        Creneau.dureeMin = dureeMin;
+    }
+
+    public static int getDureeMin() {
+        return dureeMin;
+    }
+
+    private static int dureeMin=15;
+
 
     public LocalDate getJour() {
 
@@ -51,8 +61,11 @@ public class Creneau implements Decomposable{
     public boolean verifDureeMin(){
         boolean bool=false;
         Duration duree= Duration.ofMinutes(dureeMin);
-        if(Duration.between(HeureDebut, HeureFin).compareTo(duree)<0)
-        {bool=true;}
+        if(Duration.between(HeureDebut, HeureFin).compareTo(duree)>0)
+        {        System.out.println(" duree du creneau est ok ");
+
+
+            bool=true;}
         else{bool=false;}
 
         return bool;
@@ -66,10 +79,10 @@ public class Creneau implements Decomposable{
         tache.HeureDebut=Cr.HeureDebut;
         tache.HeureFin=Cr.HeureDebut.plusMinutes(tache.duree);
         Cr.HeureDebut=Cr.HeureDebut.plusMinutes(tache.duree); //le nouveau créneau libre
-
+        //heure fin du nouveau créneau va prendre l'heure fin de la tache
 
         planning.creneauxlibres[i]=Cr; //prend la placement de l'ancien creneau libre dans creneauxlibres
-       // Duration.ofMinutes(tache.duree);
+
 
         // exception
 

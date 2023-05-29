@@ -1,37 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<AnchorPane prefHeight="598.0" prefWidth="900.0" style="-fx-background-color: #1c1f24;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.CreneauxLibresController">
+    <children>
 
-<AnchorPane prefHeight="504.0" prefWidth="810.0" style="-fx-background-color: #1c1f24;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.CreneauxLibresController">
-   <children>
-      <TextField fx:id="hdfield" layoutX="455.0" layoutY="142.0" prefHeight="26.0" prefWidth="58.0" promptText="13:30" />
-      <TextField fx:id="hffield" layoutX="455.0" layoutY="213.0" prefHeight="26.0" prefWidth="58.0" promptText="17:00" />
-      <Text fill="#f2e7e7" layoutX="306.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau du ">
+        <TextField fx:id="hdfield" layoutX="455.0" layoutY="142.0" prefHeight="26.0" prefWidth="58.0" promptText="13:30" />
+        <TextField fx:id="hffield" layoutX="455.0" layoutY="213.0" prefHeight="26.0" prefWidth="58.0" promptText="17:00" />
+        <Text fill="#f2e7e7" layoutX="306.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créneau du ">
+            <font>
+                <Font name="Calibri Bold" size="19.0" />
+            </font>
+        </Text>
+        <Text fill="#e4dada" layoutX="286.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure début:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Text fill="#e7dddd" layoutX="296.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure fin:">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Text fx:id="dayDisplay" fill="#eadddd" layoutX="438.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Text>
+        <ListView fx:id="selectedTimesListView" layoutX="226.0" layoutY="288.0" prefHeight="120.0" prefWidth="350.0" />
+        <Button fx:id="addTimeButton" layoutX="349.0" layoutY="434.0" mnemonicParsing="false" onAction="#addSelectedTime" text="Ajouter Creneau" />
+        <Button fx:id="terminer" layoutX="361.0" layoutY="542.0" mnemonicParsing="false" onAction="#suivant" text="terminer" textOverrun="CENTER_ELLIPSIS" />
+
+        <!-- Nouveaux éléments pour la création d'une tâche -->
+
+        <Button fx:id="ajouterTacheButton" layoutX="667.0" layoutY="83.0" mnemonicParsing="false" onAction="#ajouterTache" text="Ajouter Tâche" />
+
+        <!-- New elements for task creation -->
+        <TextField fx:id="nomTacheField" layoutX="667.0" layoutY="175.0" prefHeight="26.0" prefWidth="200.0" promptText="Nom de la tâche" />
+        <TextField fx:id="dureeTacheField" layoutX="667.0" layoutY="223.0" prefHeight="26.0" prefWidth="200.0" promptText="Durée de la tâche" />
+        <ComboBox fx:id="prioriteTacheComboBox" layoutX="667.0" layoutY="268.0" prefHeight="26.0" prefWidth="200.0" promptText="Priorite">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Low" />
+                    <String fx:value="Medium" />
+                    <String fx:value="High" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <DatePicker fx:id="deadlineTachePicker" layoutX="667.0" layoutY="321.0" prefHeight="26.0" prefWidth="200.0" promptText="Deadline" />
+        <TextField fx:id="categorieTacheField" layoutX="667.0" layoutY="368.0" prefHeight="26.0" prefWidth="200.0" promptText="Catégorie de la tâche" />
+        <ColorPicker fx:id="couleurTachePicker" layoutX="667.0" layoutY="420.0" prefHeight="26.0" prefWidth="200.0" promptText="Couleur de la tâche" />
+      <TextField fx:id="numCr" layoutX="805.0" layoutY="464.0" prefHeight="26.0" prefWidth="58.0" promptText="1" />
+      <Text fx:id="Numero" fill="#e7dddd" layoutX="667.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero du créneau :" wrappingWidth="138.498046875">
          <font>
-            <Font name="Calibri Bold" size="19.0" />
+            <Font size="13.0" />
          </font>
       </Text>
-      <Text fill="#e4dada" layoutX="286.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure début:">
+      <CheckBox fx:id="decomposable" layoutX="667.0" layoutY="134.0" mnemonicParsing="false" text="Décomposable" textFill="#e1d3d3">
          <font>
-            <Font size="14.0" />
+            <Font size="13.0" />
          </font>
-      </Text>
-      <Text fill="#e7dddd" layoutX="296.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure fin:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text fx:id="dayDisplay" fill="#eadddd" layoutX="438.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Button layoutX="361.0" layoutY="312.0" mnemonicParsing="false" onAction="#setCreneau" text="Jour suivant" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="creercreneau" layoutX="378.0" layoutY="365.0" mnemonicParsing="false" onAction="#AfficherCreneau" text="Créer" visible="false" />
-   </children>
+      </CheckBox>
+
+
+
+
+    </children>
 </AnchorPane>
